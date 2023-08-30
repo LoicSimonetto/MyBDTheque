@@ -1,0 +1,77 @@
+﻿@*@model IEnumerable<MyBDTheque.Core.Data.BandeDessinee>*@
+@using MyBDTheque.Core.Data;
+@model IEnumerable<BandeDessinee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateParution)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Serie)
+                </th>
+                <th>liens</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateParution)
+                </td>
+                <td>
+                    @if (item.Serie != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Serie.Titre)
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BandeDessineeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BandeDessineeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BandeDessineeId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
+
+
+<style>
+    tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 500px;
+        display: block;
+    }
+
+    thead {
+        display: table;
+        width: calc(100% - 17px);
+        table-layout: fixed;
+    }
+
+    tbody tr {
+        table-layout: fixed;
+        display: table;
+        width: 100%;
+    }
+</style>
+      

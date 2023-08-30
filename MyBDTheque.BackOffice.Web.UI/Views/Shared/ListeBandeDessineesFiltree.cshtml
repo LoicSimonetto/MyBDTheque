@@ -1,0 +1,11 @@
+﻿@model MyBDTheque.Core.Data.Serie
+@{
+    List<MyBDTheque.Core.Data.BandeDessinee> listeBds = ViewBag.BandeDessinees;
+    List<SelectListItem> listeItemsBds = new List<SelectListItem>();
+    listeItemsBds.Add(new SelectListItem() { Text = "", Value = "0" });
+    listeItemsBds.AddRange(listeBds.Select(item => new SelectListItem() { Text = item.Titre, Value = item.BandeDessineeId.ToString() }).ToList());
+}
+
+<label asp-for="BandeDessinees" class="control-label"></label>
+<select name="bandeDessinees" multiple class="form-control" asp-items="listeItemsBds"></select>
+

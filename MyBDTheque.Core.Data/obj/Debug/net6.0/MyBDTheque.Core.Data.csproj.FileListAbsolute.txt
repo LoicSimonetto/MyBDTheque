@@ -1,0 +1,12 @@
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\bin\Debug\net6.0\MyBDTheque.Core.Data.deps.json
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\bin\Debug\net6.0\MyBDTheque.Core.Data.dll
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\bin\Debug\net6.0\MyBDTheque.Core.Data.pdb
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.csproj.AssemblyReference.cache
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.AssemblyInfoInputs.cache
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.AssemblyInfo.cs
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.csproj.CoreCompileInputs.cache
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.dll
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\refint\MyBDTheque.Core.Data.dll
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\MyBDTheque.Core.Data.pdb
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.Core.Data\obj\Debug\net6.0\ref\MyBDTheque.Core.Data.dll

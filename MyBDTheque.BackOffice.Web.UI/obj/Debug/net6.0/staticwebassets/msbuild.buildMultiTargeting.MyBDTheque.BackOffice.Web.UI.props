@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MyBDTheque.BackOffice.Web.UI.props" />
+</Project>

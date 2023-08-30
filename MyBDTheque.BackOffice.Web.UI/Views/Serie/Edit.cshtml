@@ -1,0 +1,105 @@
+﻿@model MyBDTheque.Core.Data.Serie
+
+@{
+    ViewData["Title"] = "Edit";
+
+
+    List<MyBDTheque.Core.Data.BandeDessinee> sesBds = ViewBag.SesBandeDessinees;
+    bool aDesBds = false;
+    List<SelectListItem> listeItemsSesBds = new List<SelectListItem>();
+    if (sesBds.Count > 0)
+    {
+        listeItemsSesBds.Add(new SelectListItem() { Text = "", Value = "0" });
+        listeItemsSesBds.AddRange(sesBds.Select(item => new SelectListItem() { Text = item.Titre, Value = item.BandeDessineeId.ToString() }).ToList());
+        aDesBds = true;
+    }
+    
+    List<MyBDTheque.Core.Data.BandeDessinee> newBds = ViewBag.BandeDessineesLibres;
+    List<SelectListItem> listeItemsNewBds = new List<SelectListItem>();
+    listeItemsNewBds.Add(new SelectListItem() { Text = "", Value = "0" });
+    listeItemsNewBds.AddRange(newBds.Select(item => new SelectListItem() { Text = item.Titre, Value = item.BandeDessineeId.ToString() }).ToList());
+
+    /*List<SelectListItem> filtres = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Tous", Value = "0" },
+        new SelectListItem { Text = "libres", Value = "1" }
+    };*/
+}
+
+<h1>Edit</h1>
+
+<h4>Série</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SerieId" />
+            <div class="form-group">
+                <label asp-for="Titre" class="control-label"></label>
+                <input asp-for="Titre" class="form-control" />
+                <span asp-validation-for="Titre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resume" class="control-label"></label>
+                <input asp-for="Resume" class="form-control" />
+                <span asp-validation-for="Resume" class="text-danger"></span>
+            </div>
+            @if(aDesBds)
+            {
+                <div class="form-group">
+                    <label class="control-label">Sélectionner les bds à détacher de la série</label>
+                    <select name="sesBandeDessinees" multiple class="form-control" asp-items="listeItemsSesBds"></select>
+                </div>
+            }
+            <div class="form-group">
+                <label class="control-label">Sélectionner les bds à rattacher à la série</label>
+                <select name="newbandeDessinees" multiple class="form-control" asp-items="listeItemsNewBds"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+@*
+<div class="form-group" id="divPartial">
+    <partial name="/Views/Shared/ListeBandeDessineesFiltree.cshtml">
+</div>
+            Modifier les bande dessinées @Html.CheckBox("CheckModifier",false)
+            Filtrer : @Html.DropDownList("mesChoix",filtres, new { id = "MyDdl", onchange = "valueChanged()"} )
+<script type="text/javascript">
+
+    function valueChanged() {
+
+        var id = $("#MyDdl").val();
+        $.ajax({
+                type: "POST",
+                url: "/Serie/ListeBandeDessineesFiltree",
+                dataType: 'text',
+                contentType: 'application/x-www-form-urlencoded',
+                data: { id: id },
+                success: function (response) {
+                $('#divPartial').html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+    }
+
+</script>
+*@

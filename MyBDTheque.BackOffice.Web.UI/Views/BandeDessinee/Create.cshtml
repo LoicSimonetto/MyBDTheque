@@ -1,0 +1,60 @@
+﻿@model MyBDTheque.Core.Data.BandeDessinee
+
+
+@{
+    ViewData["Title"] = "Create";
+    // Les auteurs :
+    List<MyBDTheque.Core.Data.Auteur> listeAuteurs = ViewBag.LesAuteurs;
+    var listeItemsAuteurs = listeAuteurs.Select(item => new SelectListItem() { Text = item.NomComplet, Value = item.AuteurId.ToString() }).ToList();
+    // les séries :
+    List<MyBDTheque.Core.Data.Serie> listeSeries = ViewBag.LesSeries;
+    List<SelectListItem> listeItemsSeries = new List<SelectListItem>();
+    listeItemsSeries.Add(new SelectListItem() { Text = "", Value = "0" });
+    listeItemsSeries.AddRange(listeSeries.Select(item => new SelectListItem() { Text = item.Titre, Value = item.SerieId.ToString() }).ToList()); 
+}
+
+<h1>View</h1>
+
+<h4>BandeDessinee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Titre" class="control-label"></label>
+                <input asp-for="Titre" class="form-control" />
+                <span asp-validation-for="Titre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resume" class="control-label"></label>
+                <input asp-for="Resume" class="form-control" />
+                <span asp-validation-for="Resume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateParution" class="control-label"></label>
+                <input asp-for="DateParution" class="form-control" />
+                <span asp-validation-for="DateParution" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Serie" class="control-label"></label>
+                <select asp-for="SerieId" asp-items="listeItemsSeries"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BandeDessineeAuteurs" class="control-label"></label>
+                <select name="auteurs" multiple class="form-control" asp-items="listeItemsAuteurs"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
