@@ -12,9 +12,57 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
         {
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? typeTrie, string? colonne, string? searchString)
         {
-            var mesBds = _context.BandeDessinees.Include(bd => bd.Serie).ToList();
+            if (colonne == "Titre")
+            {
+                if ((typeTrie != null && !typeTrie.Contains("titre")) | typeTrie == null | typeTrie == "titre_desc")
+                {
+                    typeTrie = "titre_asc";
+                }
+                else if (typeTrie == "titre_asc")
+                {
+                    typeTrie = "titre_desc";
+                } 
+            }
+            else if (colonne == "DateParution")
+            {
+                if ((typeTrie != null && !typeTrie.Contains("date")) |  typeTrie == null | typeTrie == "date_desc")
+                {
+                    typeTrie = "date_asc";
+                }
+                else if (typeTrie == "date_asc")
+                {
+                    typeTrie = "date_desc";
+                }
+            }
+
+            ViewBag.TypeTrie = typeTrie;
+
+            List<BandeDessinee>? mesBds = _context.BandeDessinees.Include(bd => bd.Serie).ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                mesBds = mesBds.Where(s => s.Titre.Contains(searchString)).ToList();
+            }
+
+            switch (typeTrie)
+            {
+                case "titre_asc":
+                    mesBds = mesBds.OrderBy(bd => bd.Titre).ToList();
+                    break;
+                case "titre_desc":
+                    mesBds = mesBds.OrderByDescending(bd => bd.Titre).ToList();
+                    break;
+                case "date_asc":
+                    mesBds = mesBds.OrderBy(bd => bd.DateParution).ToList();
+                    break;
+                case "date_desc":
+                    mesBds = mesBds.OrderByDescending(bd => bd.DateParution).ToList();
+                    break;
+                default:
+                    break;
+            }
 
             return View(mesBds);
         }

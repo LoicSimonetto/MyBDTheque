@@ -11,15 +11,22 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Trouver par nom : @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <div>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Titre)
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model.Titre), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "Titre" })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateParution)
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model.DateParution), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "DateParution" })
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Serie)
