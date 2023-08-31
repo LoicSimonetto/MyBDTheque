@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LibrairiesAspnet;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyBDTheque.Core.Data;
 using System.Linq;
+
 
 namespace MyBDTheque.BackOffice.Web.UI.Controllers
 {
@@ -12,7 +15,7 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
         {
         }
 
-        public IActionResult Index(string? typeTrie, string? colonne, string? searchString)
+        public async Task<IActionResult> Index(string? typeTrie, string? colonne, string? searchString, string currentFilter, int? pageNumber)
         {
             if (colonne == "Titre")
             {
@@ -38,33 +41,44 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
             }
 
             ViewBag.TypeTrie = typeTrie;
+            
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            List<BandeDessinee>? mesBds = _context.BandeDessinees.Include(bd => bd.Serie).ToList();
+            ViewBag.CurrentFilter = searchString;
+
+            System.Linq.IQueryable<BandeDessinee> mesBds = _context.BandeDessinees.Include(bd => bd.Serie);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                mesBds = mesBds.Where(s => s.Titre.Contains(searchString)).ToList();
+                mesBds = mesBds.Where(s => s.Titre.Contains(searchString));
             }
 
             switch (typeTrie)
             {
                 case "titre_asc":
-                    mesBds = mesBds.OrderBy(bd => bd.Titre).ToList();
+                    mesBds = mesBds.OrderBy(bd => bd.Titre);
                     break;
                 case "titre_desc":
-                    mesBds = mesBds.OrderByDescending(bd => bd.Titre).ToList();
+                    mesBds = mesBds.OrderByDescending(bd => bd.Titre);
                     break;
                 case "date_asc":
-                    mesBds = mesBds.OrderBy(bd => bd.DateParution).ToList();
+                    mesBds = mesBds.OrderBy(bd => bd.DateParution);
                     break;
                 case "date_desc":
-                    mesBds = mesBds.OrderByDescending(bd => bd.DateParution).ToList();
+                    mesBds = mesBds.OrderByDescending(bd => bd.DateParution);
                     break;
                 default:
                     break;
             }
-
-            return View(mesBds);
+            int pageSize = 3;
+            return View(await PaginatedList<BandeDessinee>.CreateAsync(mesBds.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Details(int? id) 

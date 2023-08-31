@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LibrairiesAspnet\LibrairiesAspnet.csproj" />
     <ProjectReference Include="..\MyBDTheque.Core.Data\MyBDTheque.Core.Data.csproj" />
   </ItemGroup>
 

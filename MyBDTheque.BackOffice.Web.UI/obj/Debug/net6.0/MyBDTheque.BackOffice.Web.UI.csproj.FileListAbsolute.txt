@@ -249,3 +249,5 @@ C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.BackOffice.Web.UI\obj\Debug\ne
 C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.BackOffice.Web.UI\obj\Debug\net6.0\MyBDTheque.BackOffice.Web.UI.pdb
 C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.BackOffice.Web.UI\obj\Debug\net6.0\MyBDTheque.BackOffice.Web.UI.genruntimeconfig.cache
 C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.BackOffice.Web.UI\obj\Debug\net6.0\ref\MyBDTheque.BackOffice.Web.UI.dll
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.BackOffice.Web.UI\bin\Debug\net6.0\LibrairiesAspnet.dll
+C:\Users\loics\source\repos\MyBDTheque\MyBDTheque.BackOffice.Web.UI\bin\Debug\net6.0\LibrairiesAspnet.pdb

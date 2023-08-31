@@ -1,0 +1,12 @@
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\bin\Debug\net6.0\LibrairiesAspnet.deps.json
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\bin\Debug\net6.0\LibrairiesAspnet.dll
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\bin\Debug\net6.0\LibrairiesAspnet.pdb
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.csproj.AssemblyReference.cache
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.AssemblyInfoInputs.cache
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.AssemblyInfo.cs
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.csproj.CoreCompileInputs.cache
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.dll
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\refint\LibrairiesAspnet.dll
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\LibrairiesAspnet.pdb
+C:\Users\loics\source\repos\MyBDTheque\LibrairiesAspnet\obj\Debug\net6.0\ref\LibrairiesAspnet.dll

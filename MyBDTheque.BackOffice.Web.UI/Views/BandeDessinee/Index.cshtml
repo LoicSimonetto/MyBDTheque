@@ -1,6 +1,8 @@
 ﻿@*@model IEnumerable<MyBDTheque.Core.Data.BandeDessinee>*@
 @using MyBDTheque.Core.Data;
-@model IEnumerable<BandeDessinee>
+@using LibrairiesAspnet
+
+@model PaginatedList<BandeDessinee>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,7 +13,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "BandeDessinee", FormMethod.Get))
 {
     <p>
         Trouver par nom : @Html.TextBox("SearchString")
@@ -23,13 +25,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.ActionLink(@Html.DisplayNameFor(model => model.Titre), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "Titre" })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].Titre), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "Titre",currentFilter=ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.ActionLink(@Html.DisplayNameFor(model => model.DateParution), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "DateParution" })
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].DateParution), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "DateParution",currentFilter=ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Serie)
+                    @Html.DisplayNameFor(model => model[0].Serie)
                 </th>
                 <th>liens</th>
             </tr>
@@ -59,10 +61,30 @@
         </tbody>
     </table>
 </div>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
 
+<a asp-action="Index"
+   asp-controller="BandeDessinee"
+   asp-route-sortOrder="@ViewBag.TypeTrie"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewBag.CurrentFilter"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-controller="BandeDessinee"
+   asp-route-sortOrder="@ViewBag.TypeTrie"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewBag.CurrentFilter"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
 
 <style>
-    tbody {
+    /*tbody {
         overflow-y: scroll;
         overflow-x: hidden;
         max-height: 200px;
@@ -79,6 +101,6 @@
         table-layout: fixed;
         display: table;
         width: 100%;
-    }
+    }*/
 </style>
       
