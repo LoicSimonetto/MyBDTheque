@@ -17,7 +17,7 @@
 {
     <p>
         Trouver par nom : @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
+        <input type="submit" value="Filtrer" />
     </p>
 }
 <div>
@@ -31,59 +31,76 @@
                     @Html.ActionLink(@Html.DisplayNameFor(model => model[0].DateParution), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "DateParution",currentFilter=ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model[0].Serie)
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].Serie), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "Serie",currentFilter=ViewBag.CurrentFilter })
+                    
                 </th>
                 <th>liens</th>
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateParution)
-                </td>
-                <td>
-                    @if (item.Serie != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.Serie.Titre)
-                    }
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.BandeDessineeId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.BandeDessineeId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.BandeDessineeId">Delete</a>
-                </td>
-            </tr>
-    }
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateParution)
+                    </td>
+                    <td>
+                        @if (item.Serie != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Serie.Titre)
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BandeDessineeId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.BandeDessineeId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.BandeDessineeId">Delete</a>
+                    </td>
+                </tr>
+        }
         </tbody>
     </table>
-</div>
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
 
-<a asp-action="Index"
-   asp-controller="BandeDessinee"
-   asp-route-sortOrder="@ViewBag.TypeTrie"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewBag.CurrentFilter"
-   class="btn btn-default @prevDisabled">
-    Previous
-</a>
-<a asp-action="Index"
-   asp-controller="BandeDessinee"
-   asp-route-sortOrder="@ViewBag.TypeTrie"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewBag.CurrentFilter"
-   class="btn btn-default @nextDisabled">
-    Next
-</a>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div style="position: absolute; left:0px; bottom: -2%;">
+    <a asp-action="Index"
+        asp-controller="BandeDessinee"
+        asp-route-typeTrie="@ViewBag.TypeTrie"
+        asp-route-pageNumber="@(Model.PageIndex - 1)"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"
+        asp-route-SuivantOuPrecedent="true"
+        class="btn btn-default @prevDisabled">
+        Précédent
+    </a>
+    <a asp-action="Index"
+        asp-controller="BandeDessinee"
+        asp-route-typeTrie="@ViewBag.TypeTrie"
+        asp-route-pageNumber="@(Model.PageIndex + 1)"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"
+        asp-route-SuivantOuPrecedent="true"
+        class="btn btn-default @nextDisabled">
+        Suivant
+    </a>
+    Page : @Model.PageIndex/@Model.TotalPages</div><div style="position: absolute; right:0px; bottom: 0px;"> Bande dessinées : @Model.MinAffiche-@Model.MaxAffiche/@Model.NbElements</div>
+</div>
+
+
 
 <style>
+    /*#pages{
+        position: absolute; 
+        right:0px; 
+        bottom: 0px;
+    }
+    #bds{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+    }*/
     /*tbody {
         overflow-y: scroll;
         overflow-x: hidden;

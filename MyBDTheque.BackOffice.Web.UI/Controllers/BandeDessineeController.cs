@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using MyBDTheque.Core.Data;
 using System.Linq;
@@ -15,33 +16,46 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
         {
         }
 
-        public async Task<IActionResult> Index(string? typeTrie, string? colonne, string? searchString, string currentFilter, int? pageNumber)
+        public async Task<IActionResult> Index(string? typeTrie, string? colonne, string? searchString, string currentFilter, int? pageNumber, bool? SuivantOuPrecedent)
         {
-            if (colonne == "Titre")
+            if (SuivantOuPrecedent == null | SuivantOuPrecedent == false)
             {
-                if ((typeTrie != null && !typeTrie.Contains("titre")) | typeTrie == null | typeTrie == "titre_desc")
+                if (colonne == "Titre")
                 {
-                    typeTrie = "titre_asc";
+                    if ((typeTrie != null && !typeTrie.Contains("titre")) | typeTrie == null | typeTrie == "titre_desc")
+                    {
+                        typeTrie = "titre_asc";
+                    }
+                    else if (typeTrie == "titre_asc")
+                    {
+                        typeTrie = "titre_desc";
+                    }
                 }
-                else if (typeTrie == "titre_asc")
+                else if (colonne == "DateParution")
                 {
-                    typeTrie = "titre_desc";
-                } 
+                    if ((typeTrie != null && !typeTrie.Contains("date")) | typeTrie == null | typeTrie == "date_desc")
+                    {
+                        typeTrie = "date_asc";
+                    }
+                    else if (typeTrie == "date_asc")
+                    {
+                        typeTrie = "date_desc";
+                    }
+                }
+                else if(colonne == "Serie")
+                {
+                    if ((typeTrie != null && !typeTrie.Contains("serie")) | typeTrie == null | typeTrie == "serie_desc")
+                    {
+                        typeTrie = "serie_asc";
+                    }
+                    else if (typeTrie == "serie_asc")
+                    {
+                        typeTrie = "serie_desc";
+                    }
+                }
             }
-            else if (colonne == "DateParution")
-            {
-                if ((typeTrie != null && !typeTrie.Contains("date")) |  typeTrie == null | typeTrie == "date_desc")
-                {
-                    typeTrie = "date_asc";
-                }
-                else if (typeTrie == "date_asc")
-                {
-                    typeTrie = "date_desc";
-                }
-            }
-
             ViewBag.TypeTrie = typeTrie;
-            
+
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -50,8 +64,8 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
             {
                 searchString = currentFilter;
             }
-
             ViewBag.CurrentFilter = searchString;
+
 
             System.Linq.IQueryable<BandeDessinee> mesBds = _context.BandeDessinees.Include(bd => bd.Serie);
 
@@ -74,10 +88,16 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
                 case "date_desc":
                     mesBds = mesBds.OrderByDescending(bd => bd.DateParution);
                     break;
+                case "serie_asc":
+                    mesBds = mesBds.OrderBy(bd => (bd.Serie == null ? "" : bd.Serie.Titre));
+                    break;
+                case "serie_desc":
+                    mesBds = mesBds.OrderByDescending(bd => bd.Serie);
+                    break;
                 default:
                     break;
             }
-            int pageSize = 3;
+            int pageSize = 6;
             return View(await PaginatedList<BandeDessinee>.CreateAsync(mesBds.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -145,7 +165,7 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
 
                 _context.SaveChanges();
 
-                return View("Index", _context.BandeDessinees.Include(bd => bd.Serie).ToList());
+                return  RedirectToAction("Index");
             }
 
             // Passage de la liste des auteurs :
@@ -234,8 +254,8 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
                 }
 
                 _context.SaveChanges();
-                
-                return View("Index", _context.BandeDessinees.Include(bd => bd.Serie).ToList());
+
+                return RedirectToAction("Index");
             }
 
             // Passage de la liste des auteurs :

@@ -41,12 +41,14 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div style="position: relative; height:500px">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container" >
             &copy; 2023 - MyBDTheque.BackOffice.Web.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
