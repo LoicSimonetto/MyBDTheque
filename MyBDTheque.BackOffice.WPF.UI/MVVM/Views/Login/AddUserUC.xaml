@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="MyBDTheque.BackOffice.WPF.UI.MVVM.Views.Login.AddUserUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.Views.Login"
+             xmlns:viewModel="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels.Login"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModel:AddUserViewModel}"
+             d:DesignHeight="370" d:DesignWidth="580">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="106*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="383*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Identifiant :" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="0.52,1.177" Width="144" Height="26"/>
+        <Label Content="Mot de passe :" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Grid.Row="2" RenderTransformOrigin="0.52,1.177" Width="144" Height="26"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="37,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Identifiant}" VerticalAlignment="Top" Width="272"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="37,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding MotDePasse}" VerticalAlignment="Top" Width="272"/>
+        <Label Content="Entrer vos informations :" HorizontalAlignment="Left" Margin="27,22,0,0" VerticalAlignment="Top" Width="160" FontWeight="Bold"/>
+        <Button Content="Annuler" Command="{Binding Annuler}" Grid.Column="1" HorizontalAlignment="Left" Margin="279,94,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Enregistrer" Command="{Binding Enregistrer}" Grid.Column="1" HorizontalAlignment="Left" Margin="170,94,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.245,-0.298"/>
+
+    </Grid>
+</UserControl>

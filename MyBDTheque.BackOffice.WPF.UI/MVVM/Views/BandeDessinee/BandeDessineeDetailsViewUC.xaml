@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="MyBDTheque.BackOffice.WPF.UI.MVVM.Views.BandeDessinee.BandeDessineeDetailsViewUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.Views.BandeDessinee"
+             xmlns:viewModel="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels.BandeDessinee"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewModel:BandeDessineeDetailsViewModel}"
+             d:DesignHeight="336" d:DesignWidth="792">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="139*"/>
+            <ColumnDefinition Width="257*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Détails :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.342,1.577" Width="264" Height="26" FontWeight="Bold" FontSize="14"/>
+        <Label Content="Titre :" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="186" FontWeight="Bold"/>
+        <Label Content="Série :" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="186" FontWeight="Bold"/>
+        <Label Content="Date de parution :" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="186" FontWeight="Bold"/>
+        <Label Content="Tome :" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="186" FontWeight="Bold"/>
+        <Label Content="Auteurs :" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="26" Width="186" FontWeight="Bold"/>
+        <Button Content="Retour" Command="{Binding Retour}" Grid.Column="1" HorizontalAlignment="Left" Margin="429,31,0,0" Grid.Row="6" VerticalAlignment="Top" Width="75"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="23,15,0,0" TextWrapping="Wrap" Text="{Binding Bd.Titre}" VerticalAlignment="Top" RenderTransformOrigin="0.571,1.188" Grid.Row="1" Width="260"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="23,15,0,0" TextWrapping="Wrap" Text="{Binding Bd.Serie}" VerticalAlignment="Top" RenderTransformOrigin="0.571,1.188" Grid.Row="2" Width="260"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="23,15,0,0" TextWrapping="Wrap" Text="{Binding Bd.DateDeSortie}" VerticalAlignment="Top" RenderTransformOrigin="0.571,1.188" Grid.Row="3" Width="260"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="23,15,0,0" TextWrapping="Wrap" Text="{Binding Bd.Tome}" VerticalAlignment="Top" RenderTransformOrigin="0.571,1.188" Grid.Row="4" Width="260"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="23,15,0,0" TextWrapping="Wrap" Text="{Binding Bd.Auteurs}" VerticalAlignment="Top" RenderTransformOrigin="0.571,1.188" Grid.Row="5" Width="260"/>
+
+    </Grid>
+</UserControl>

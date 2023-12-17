@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="MyBDTheque.BackOffice.WPF.UI.MVVM.Views.Login.LoginUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.Views.Login"
+             xmlns:viewModel="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels.Login"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModel:LoginViewModel}"
+             d:DesignHeight="370" d:DesignWidth="580">
+    <Grid>
+        <Label Content="Saisir les informations de connexion :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.768,-0.161" Width="214"/>
+        <Label Content="Login :" HorizontalAlignment="Left" Margin="71,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.325,-1.309"/>
+        <Label Content="Mot de passe :" HorizontalAlignment="Left" Margin="71,171,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.29,0.507"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="225,97,0,0" TextWrapping="Wrap" Text="{Binding Login}" VerticalAlignment="Top" Width="255"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="225,174,0,0" TextWrapping="Wrap" Text="{Binding MotDePasse}" VerticalAlignment="Top" Width="255"/>
+        <Button Content="Connexion" Command="{Binding Connexion}" HorizontalAlignment="Left" Margin="405,233,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.306,-1.768"/>
+        <Button Content="Créer un compte" Command="{Binding CreerUser}" HorizontalAlignment="Left" Margin="260,233,0,0" VerticalAlignment="Top" Width="107" RenderTransformOrigin="0.809,0.63"/>
+
+    </Grid>
+</UserControl>

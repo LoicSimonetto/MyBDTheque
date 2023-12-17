@@ -1,0 +1,34 @@
+﻿<Application x:Class="MyBDTheque.BackOffice.WPF.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MyBDTheque.BackOffice.WPF.UI"
+             xmlns:BandeDessineeViewModels="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels.BandeDessinee"
+             xmlns:BandeDessineeViews="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.Views.BandeDessinee"
+             xmlns:LoginViewModels="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels.Login"
+             xmlns:LoginViews="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.Views.Login"
+             xmlns:viewModels="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels"
+             >
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type TypeName=BandeDessineeViewModels:BandeDessineeAddViewModel}">
+            <BandeDessineeViews:BandeDessineeAddViewUC/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=BandeDessineeViewModels:BandeDessineeDeleteViewModel}">
+            <BandeDessineeViews:BandeDessineeDeleteViewUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=BandeDessineeViewModels:BandeDessineeDetailsViewModel}">
+            <BandeDessineeViews:BandeDessineeDetailsViewUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=BandeDessineeViewModels:BandeDessineeIndexViewModel}">
+            <BandeDessineeViews:BandeDessineeIndexViewUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=BandeDessineeViewModels:BandeDessineeEditViewModel}">
+            <BandeDessineeViews:BandeDessineeEditViewUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=LoginViewModels:LoginViewModel}">
+            <LoginViews:LoginUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=LoginViewModels:AddUserViewModel}">
+            <LoginViews:AddUserUC />
+        </DataTemplate>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,30 @@
+﻿<Window x:Class="MyBDTheque.BackOffice.WPF.UI.MVVM.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyBDTheque.BackOffice.WPF.UI"
+        xmlns:viewModels="clr-namespace:MyBDTheque.BackOffice.WPF.UI.MVVM.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
+        Title="{Binding WindowTitle}" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="336*"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1,1,1,1" BorderBrush="Black"/>
+        <DockPanel Margin="0">
+            <Button  Content="Bandes Dessinées" Command="{Binding NavigateToBandeDessineeIndexCommand}" Width="103" HorizontalAlignment="Left" Margin="20" />
+            <Button  Content="Séries" Width="103" HorizontalAlignment="Left" Margin="20" />
+            <Button  Content="Auteurs" Width="103" HorizontalAlignment="Left" Margin="20" />
+            <TextBlock Height="22" TextWrapping="Wrap" Text="{Binding Utilisateur}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="70,30,0,31" Width="71"/>
+            <Button Content="Déconnexion" Command="{Binding Deconnexion}" HorizontalAlignment="Right" Width="87" Margin="20" RenderTransformOrigin="0.755,0.512"/>
+            
+
+        </DockPanel>
+        <ContentControl BorderThickness="1,1,1,1" BorderBrush="Black" Content="{Binding Navigation.CurrentView}" Grid.Row="1"/>
+
+
+    </Grid>
+</Window>
