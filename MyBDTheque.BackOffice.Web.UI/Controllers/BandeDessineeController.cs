@@ -12,7 +12,7 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
 {
     public class BandeDessineeController : ControllerBase
     {
-        public BandeDessineeController(DefaultContext context) : base(context)
+        public BandeDessineeController(DefaultContext context,IConfiguration configuration) : base(context,configuration)
         {
         }
 
@@ -97,7 +97,13 @@ namespace MyBDTheque.BackOffice.Web.UI.Controllers
                 default:
                     break;
             }
-            int pageSize = 6;
+
+            int pageSize;
+            if (!int.TryParse(this._configuration["NbElementParPage"],out pageSize))
+            {
+                pageSize = 6;
+            }
+
             return View(await PaginatedList<BandeDessinee>.CreateAsync(mesBds.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 

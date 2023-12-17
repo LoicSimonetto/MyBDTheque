@@ -1,4 +1,8 @@
-﻿@model IEnumerable<MyBDTheque.Core.Data.Auteur>
+﻿@*@model IEnumerable<MyBDTheque.Core.Data.Auteur>*@
+@using MyBDTheque.Core.Data;
+@using LibrairiesAspnet
+
+@model PaginatedList<Auteur>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,35 +11,69 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nouvel auteur</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomComplet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateDeNaissance)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomComplet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateDeNaissance)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.AuteurId  }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@using (Html.BeginForm("Index", "Auteur", FormMethod.Get))
+{
+    <p>
+        Trouver par nom : @Html.TextBox("SearchString")
+        <input type="submit" value="Filtrer" />
+    </p>
 }
-    </tbody>
-</table>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].NomComplet), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "NomComplet",currentFilter=ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].DateDeNaissance), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "DateDeNaissance",currentFilter=ViewBag.CurrentFilter })
+                </th>
+                <th>Liens</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomComplet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateDeNaissance)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.AuteurId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.AuteurId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.AuteurId">Delete</a>
+                    </td>
+                </tr>
+        }
+        </tbody>
+    </table>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div style="position: absolute; left:0px; bottom: -2%;">
+        <a asp-action="Index"
+           asp-controller="Auteur"
+           asp-route-typeTrie="@ViewBag.TypeTrie"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewBag.CurrentFilter"
+           asp-route-SuivantOuPrecedent="true"
+           class="btn btn-default @prevDisabled">
+           Précédent
+        </a>
+        <a asp-action="Index"
+           asp-controller="Auteur"
+           asp-route-typeTrie="@ViewBag.TypeTrie"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewBag.CurrentFilter"
+           asp-route-SuivantOuPrecedent="true"
+           class="btn btn-default @nextDisabled">
+           Suivant
+        </a>
+        Page : @Model.PageIndex/@Model.TotalPages</div><div style="position: absolute; right:0px; bottom: 0px;"> Auteurs : @Model.MinAffiche-@Model.MaxAffiche/@Model.NbElements</div>
+</div>

@@ -1,4 +1,9 @@
-﻿@model IEnumerable<MyBDTheque.Core.Data.Serie>
+﻿@*@model IEnumerable<MyBDTheque.Core.Data.Serie>*@
+
+@using MyBDTheque.Core.Data;
+@using LibrairiesAspnet
+
+@model PaginatedList<Serie>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,35 +12,68 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nouvelle série</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Titre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resume)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SerieId">Edit</a> |
-                @Html.ActionLink("Details", "Details", new {  id=item.SerieId  }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+
+@using (Html.BeginForm("Index", "Serie", FormMethod.Get))
+{
+    <p>
+        Trouver par titre : @Html.TextBox("SearchString")
+        <input type="submit" value="Filtrer" />
+    </p>
 }
-    </tbody>
-</table>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model[0].Titre), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "Titre",currentFilter=ViewBag.CurrentFilter })
+                </th>
+                <th>Liens</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titre)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SerieId">Editer</a> |
+                        <a asp-action="Details" asp-route-id="@item.SerieId">Détails</a> |
+                        <a asp-action="Delete" asp-route-id="@item.SerieId">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div style="position: absolute; left:0px; bottom: -2%;">
+
+    <a asp-action="Index"
+        asp-controller="BandeDessinee"
+        asp-route-typeTrie="@ViewBag.TypeTrie"
+        asp-route-pageNumber="@(Model.PageIndex - 1)"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"
+        asp-route-SuivantOuPrecedent="true"
+        class="btn btn-default @prevDisabled">
+        Précédent
+    </a>
+    <a asp-action="Index"
+        asp-controller="BandeDessinee"
+        asp-route-typeTrie="@ViewBag.TypeTrie"
+        asp-route-pageNumber="@(Model.PageIndex + 1)"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"
+        asp-route-SuivantOuPrecedent="true"
+        class="btn btn-default @nextDisabled">
+        Suivant
+    </a>
+    Page : @Model.PageIndex/@Model.TotalPages
+    </div><div style="position: absolute; right:0px; bottom: 0px;"> Bande dessinées : @Model.MinAffiche-@Model.MaxAffiche/@Model.NbElements</div>
+</div>
+

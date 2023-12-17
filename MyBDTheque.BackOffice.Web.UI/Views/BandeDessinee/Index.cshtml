@@ -11,12 +11,12 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nouvelle bande dessinée</a>
 </p>
 @using (Html.BeginForm("Index", "BandeDessinee", FormMethod.Get))
 {
     <p>
-        Trouver par nom : @Html.TextBox("SearchString")
+        Trouver par titre : @Html.TextBox("SearchString")
         <input type="submit" value="Filtrer" />
     </p>
 }
@@ -32,9 +32,8 @@
                 </th>
                 <th>
                     @Html.ActionLink(@Html.DisplayNameFor(model => model[0].Serie), "Index", new { typeTrie = ViewBag.TypeTrie, colonne = "Serie",currentFilter=ViewBag.CurrentFilter })
-                    
                 </th>
-                <th>liens</th>
+                <th>Liens</th>
             </tr>
         </thead>
         <tbody>

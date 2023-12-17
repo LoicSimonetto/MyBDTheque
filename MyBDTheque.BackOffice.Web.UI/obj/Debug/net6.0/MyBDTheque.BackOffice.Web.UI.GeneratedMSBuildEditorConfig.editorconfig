@@ -20,8 +20,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0ZXVyXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Auteur/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0ZXVyXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Auteur/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0ZXVyXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Auteur/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0ZXVyXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Auteur/Index.cshtml]
@@ -58,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Serie/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VyaWVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Serie/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VyaWVcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/loics/source/repos/MyBDTheque/MyBDTheque.BackOffice.Web.UI/Views/Serie/Details.cshtml]
